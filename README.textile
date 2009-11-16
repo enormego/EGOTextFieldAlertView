@@ -1,0 +1,51 @@
+h1. EGOTextFieldAlertView
+
+Created by enormego
+
+EGOTextFieldAlertView is a subclass of UIAlertView that adds support for UITextFields, without needing to use any of the private methods, to avoid your binary being rejected from AppStore.
+
+Text fields will look identical to the ones in the private methods for UIAlertView, however the method calls are different, so there's no chance of tripping Apple's analyzer.
+
+h2. Methods
+
+_- (void)addTextField:(UITextField*)textField;_
+Allows you to add a UITextField directly, without having EGOTextFieldAlertView create it for you.
+
+_- (UITextField*)addTextFieldWithLabel:(NSString*)label;_
+Creates and adds a UITextField, setting the placeholder value to the label parameter.
+
+_- (UITextField*)addTextFieldWithLabel:(NSString*)label value:(NSString*)value;_
+Creates and adds a UITextField, setting the placeholder value to the label parameter, and the text value to the value parameter.
+
+_- (UITextField*)textFieldForIndex:(NSInteger)index;_
+Returns the UITextField instance at the specified index.  Note: This method is not called "textFieldAtIndex:" because there's a private method in UIAlertView with that name.
+
+_@property(nonatomic,readonly) NSInteger numberOfTextFields;_
+Returns the number of text fields added to the current instance
+
+_@property(nonatomic,readonly) UITextField* firstTextField;_
+Returns the first text field, identical to calling [alertView textFieldForIndex:0], with the exception that firstTextField will return nil if there aren't any text fields, where as textFieldForIndex will throw an exception.
+
+h2. License
+
+EGOTextFieldAlertView is available under the MIT license:
+
+_Copyright (c) 2009 enormego_
+
+_Permission is hereby granted, free of charge, to any person obtaining a copy_
+_of this software and associated documentation files (the "Software"), to deal_
+_in the Software without restriction, including without limitation the rights_
+_to use, copy, modify, merge, publish, distribute, sublicense, and/or sell_
+_copies of the Software, and to permit persons to whom the Software is_
+_furnished to do so, subject to the following conditions:_
+
+_The above copyright notice and this permission notice shall be included in_
+_all copies or substantial portions of the Software._
+
+_THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR_
+_IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,_
+_FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE_
+_AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER_
+_LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,_
+_OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN_
+_THE SOFTWARE._
